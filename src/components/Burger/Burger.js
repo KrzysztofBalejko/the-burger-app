@@ -2,12 +2,8 @@ import React from 'react';
 import classes from './Burger.module.scss'
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient'
 
-
-
-
 const burger = (props) => {
-
-    const dynamicIngredients = (props) => {
+    let dynamicIngredients = (props) => {
 
         let food = Object.keys(props.ingredients)
         let amount = Object.values(props.ingredients)
@@ -18,8 +14,13 @@ const burger = (props) => {
               arr.push(key)
             };
         })
-        return arr.map((item) => <BurgerIngredient type={item} /> )
-        
+
+        if(arr.length === 0){
+            return <p>Please enter ingredients</p>
+        } else {
+            return arr.map((item) => <BurgerIngredient type={item} /> )
+        }
+
     }
 
     return(
